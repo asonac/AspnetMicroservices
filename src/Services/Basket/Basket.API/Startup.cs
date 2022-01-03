@@ -35,7 +35,8 @@ namespace Basket.API
             services.AddAutoMapper(typeof(Startup));
 
             // MassTransit-RabbitMQ Configuration
-            services.AddMassTransit(config => {
+            services.AddMassTransit(config =>
+            {
                 config.UsingRabbitMq((ctx, cfg) =>
                 {
                     cfg.Host(Configuration["EventBusSettings:HostAddress"]);

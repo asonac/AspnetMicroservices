@@ -3,8 +3,6 @@ using Shopping.Aggregator.Models;
 using Shopping.Aggregator.Services;
 using System;
 using System.Net;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -12,7 +10,7 @@ namespace Shopping.Aggregator.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ShoppingController  : ControllerBase
+    public class ShoppingController : ControllerBase
     {
         private readonly ICatalogService _catalogService;
         private readonly IBasketService _basketService;
@@ -32,7 +30,7 @@ namespace Shopping.Aggregator.Controllers
             // get basket with username
             var basket = await _basketService.GetBasket(userName);
             // iterqate basket items and consume products with basket item productId member
-            foreach(var item in basket.Items)
+            foreach (var item in basket.Items)
             {
                 var product = await _catalogService.GetCatalog(item.ProductId);
 

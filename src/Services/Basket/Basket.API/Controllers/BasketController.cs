@@ -42,7 +42,7 @@ namespace Basket.API.Controllers
             // TODO :  Communicate with Discount.Grpc
             // and Calclulate latest prices into shopping cart
             // consume Discount Grpc 
-            foreach(var item in basket.Items)
+            foreach (var item in basket.Items)
             {
                 var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
                 item.Price -= coupon.Amount;
@@ -68,7 +68,7 @@ namespace Basket.API.Controllers
             // get existing basket with total price
             var basket = await _repository.GetBasket(basketCheckout.UserName);
 
-            if(basket is null)
+            if (basket is null)
                 return BadRequest();
 
             // Create basketCheckoutEvent -- Set TotalPrice on basketCheckout eventMessage

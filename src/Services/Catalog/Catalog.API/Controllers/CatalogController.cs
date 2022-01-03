@@ -2,9 +2,7 @@
 using Catalog.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -27,7 +25,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products =  await _repository.GetProducts();
+            var products = await _repository.GetProducts();
             return Ok(products);
         }
 
@@ -37,7 +35,7 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _repository.GetProduct(id);
-            if(product == null)
+            if (product == null)
             {
                 _logger.LogError($"Product with id: {id}, not found");
                 return NotFound();

@@ -2,9 +2,6 @@
 using Ordering.Domain.Common;
 using Ordering.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,9 +18,9 @@ namespace Ordering.Infrastructure.Persistence
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            foreach(var entry in ChangeTracker.Entries<EntityBase>())
+            foreach (var entry in ChangeTracker.Entries<EntityBase>())
             {
-                switch(entry.State)
+                switch (entry.State)
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;

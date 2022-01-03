@@ -2,9 +2,6 @@
 using Discount.API.Entities;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Discount.API.Repositories
@@ -25,8 +22,8 @@ namespace Discount.API.Repositories
 
             var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>
                 ("SELECT * FROM Coupon WHERE ProductName = @ProductName", new { ProductName = productName });
-        
-            if(coupon == null)
+
+            if (coupon == null)
             {
                 return new Coupon { ProductName = "No Discount", Amount = 0, Description = "No Discount Desc" };
             }
